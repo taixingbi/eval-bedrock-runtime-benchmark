@@ -43,7 +43,7 @@ class ShippedConstraintsTests(unittest.TestCase):
     def test_every_workload_names_its_profile_and_gets_exactly_it(self):
         slos = load_slo()
         for path in sorted(Path("experiments").glob("*.yaml")):
-            if path.stem == "diagnostic-context-history":
+            if path.stem in {"diagnostic-context-history", "diagnostic-context-stress2-history"}:
                 with self.assertRaises(NoMatchingWorkloads):
                     load_experiment(str(path), MICRO)
                 continue

@@ -14,12 +14,13 @@ from bedrock_benchmark.models import load_models
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--model', required=True)
+    parser.add_argument('--template', type=Path, default=Path('experiments/diagnostic-context-history.yaml'))
     parser.add_argument('--profiles', nargs='+', required=True, type=Path)
     parser.add_argument('--output-dir', required=True, type=Path)
     args = parser.parse_args()
     try:
         model = load_models(names=[args.model])[0]
-        configs = prepare('experiments/diagnostic-context-history.yaml', args.profiles, model)
+        configs = prepare(args.template, args.profiles, model)
         paths = [args.output_dir / (cfg['name'] + '.yaml') for cfg in configs]
         if any(p.exists() for p in paths):
             raise ValueError('Output files already exist; choose a new directory to preserve baseline provenance')

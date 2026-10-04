@@ -371,13 +371,70 @@ overload pressure retains the existing quota-relative protocol.
 The first round compares recovery behavior. Its descriptive bins and three load
 levels do not independently confirm `R_safe_after_overload`; establishing that
 function requires boundary sweeps and confirmation for each recovery condition.
-`diagnostic-context-stress` runs `short`, `medium`, and `long` at fixed absolute
+`diagnostic-context-stress1` runs `short`, `medium`, and `long` at fixed absolute
 rates of 0.1, 0.25, 0.5, 1.0, and 1.6667 RPS, with output=64 and the same
 history protocol. It runs without baseline artifacts and does not normalize
 target pressure. Actions splits it into 15 serial jobs, about 3.4 hours each
 and 51.5 hours total before calibration/drain. The 16K/256 shape remains in
 the workload catalog but is not selected by this experiment.
 Existing results and partially completed runs are left intact.
+
+#### Round two: idle capacity, then normalized history
+
+`diagnostic-context-stress1` is the renamed first-round fixed-rate history
+experiment; its protocol and rates are unchanged. Existing artifacts retain
+their original experiment names.
+
+Run **`diagnostic-context-stress2`** in Actions to discover and independently
+confirm each class's idle baseline. It uses 900s discovery windows and independent
+confirmation with a 300s cooldown, recovery checks and at least 900s continuous
+measured exposure. It produces calibration evidence without a production
+admission envelope. Actions runs three serial jobs, keeping each class's entire
+sweep and confirmation together:
+
+| Class | Offered rates (RPS) |
+| --- | --- |
+| short, 512/64 | 2, 3, 4, 5, 6 |
+| medium, 2048/64 | 2, 3, 4, 5 |
+| long, 8192/64 | 2, 2.5, 3, 4 |
+
+These grids suit the current nova-micro/nova-lite/qwen quota ranges. With the
+current nova-pro and llama quotas, all proposed rates exceed the nominal rate
+ceiling and the runner cannot confirm a baseline; lower the grids for those
+models before using this workflow for capacity calibration.
+
+The grid searches for a knee; it does not guarantee one is found. If the highest
+rate passes, extend that class's grid. If the first point fails, add lower rates.
+Add intermediate points to narrow a pass/fail bracket before using a baseline
+as a near-boundary capacity estimate. Example capacities such as 4.5/3.2/2.3 are
+not baked into the configuration.
+
+After reviewing the three confirmed baselines, download their capacity profiles
+and generate the second-stage history configs:
+
+```sh
+.venv/bin/python scripts/prepare_context_history.py --model nova-micro \
+  --template experiments/diagnostic-context-stress2-history.yaml \
+  --profiles path/to/short-profile.yaml path/to/medium-profile.yaml path/to/long-profile.yaml \
+  --output-dir experiments
+```
+
+Commit and push the generated configs, then select each in Actions:
+`diagnostic-context-stress2-history-short`, `diagnostic-context-stress2-history-medium`,
+and `diagnostic-context-stress2-history-long`. Each uses **70% / 85% / 95%** of
+its own confirmed baseline and recovery waits of **120 / 300 / 600s**. The
+unchanged overload is 2x the class's nominal quota ceiling for 120s. Nine history
+cells take about 30.9 hours before calibration/drain. The unbound history
+template sends no traffic. A highest-tested passing baseline is still a lower
+bound if saturation was not reached; normalized fractions are relative to that
+baseline, not a proven maximum.
+
+Characterization summaries say `characterization complete; no admission envelope
+produced by diagnostic experiment`. Incomplete or invalid history observations
+are identified separately. The absence of an admission envelope does not imply
+that every offered rate failed its SLO. History observations remain descriptive;
+confirming `R_safe(class, provider state)` needs independent confirmation under
+each state as well as repeated measurements.
 
 History runs save locally after each arm finishes, without waiting for the full
 matrix. Under `results/<model>/<experiment>-<run_id>-checkpoints/`,

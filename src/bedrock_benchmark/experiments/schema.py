@@ -125,6 +125,7 @@ class SweepConfig:
     # Rate sweeps only: fractions of each subject's provider ceiling
     # (value_rps = fraction * ceiling_rps; see ceiling.py).
     quota_fractions: Optional[List[float]] = None
+    values_by_workload: Optional[Dict[str, List[float]]] = None
     # Stop discovery after this many CONSECUTIVE FAIL points (None = sweep
     # every value). Saturation is then seen twice -- enough for the
     # non-monotonic check -- without spending windows on a throttle storm
@@ -391,6 +392,8 @@ class ExperimentSpec:
     def sweep_values(self, subject_name: str) -> List[float]:
         """Absolute sweep values for one subject -- quota-relative rate
         sweeps resolve against that subject's own provider ceiling."""
+        if self.sweep.values_by_workload is not None:
+            return list(self.sweep.values_by_workload[subject_name])
         if self.sweep.quota_fractions is None:
             return list(self.sweep.values)
         ceiling = self.provider_ceilings[subject_name].rps
@@ -647,7 +650,18 @@ def _ceilings(spec: ExperimentSpec, model: ModelConfig) -> Dict[str, ProviderCei
 
 def _validate_sweep(spec: ExperimentSpec, model: ModelConfig, path: str) -> None:
     sweep = spec.sweep
-    if sweep.quota_fractions is None:
+    if sweep.values_by_workload is not None:
+        grids = sweep.values_by_workload
+        if (sweep.type != 'rate' or spec.mix is not None or sweep.values
+                or sweep.quota_fractions is not None or not isinstance(grids, dict)
+                or not grids or set(spec.subject_names) - set(grids)):
+            raise ValueError(f'{path}: values_by_workload requires isolated rate sweeps, a grid for every workload, and no other rate source')
+        for name, values in grids.items():
+            if (not isinstance(values, list) or not values
+                    or any(type(v) not in (int, float) or not math.isfinite(v) or v <= 0 for v in values)
+                    or any(a >= b for a, b in zip(values, values[1:]))):
+                raise ValueError(f'{path}: values_by_workload.{name} must be positive finite increasing rates')
+    elif sweep.quota_fractions is None:
         if not sweep.values:
             raise ValueError(f"{path}: sweep needs `values` or (rate only) `quota_fractions`")
     else:

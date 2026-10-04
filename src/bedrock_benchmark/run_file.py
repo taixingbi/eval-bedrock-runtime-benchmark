@@ -71,7 +71,7 @@ def estimated_duration_s(spec: ExperimentSpec) -> float:
             + len(delays) * (h.overload_duration_s + probe) + sum(delays))
     per_run = spec.warmup_s + spec.duration_s
     refine = spec.sweep.refinement.max_points if spec.sweep.refinement is not None else 0
-    discovery = (spec.sweep.point_count + refine) * spec.repetitions * per_run
+    discovery = refine * spec.repetitions * per_run
     if spec.sweep.refinement is not None:
         discovery += spec.sweep.refinement.max_points * spec.sweep.refinement.cooldown_s  # before each point
     probe = spec.recovery_probe.duration_s if spec.recovery_probe else 0.0
@@ -85,14 +85,14 @@ def estimated_duration_s(spec: ExperimentSpec) -> float:
             rate = spec.provider_ceilings[subject].rps * rp.baseline_fraction
             subject_probe += spec.warmup_s + max(rp.baseline_duration_s, 1.25 * rp.baseline_min_requests / rate)
         if spec.burst_protocol:
-            total += spec.sweep.point_count * (subject_probe + spec.recovery_probe.retry_cooldown_s)
+            total += len(spec.sweep_values(subject)) * (subject_probe + spec.recovery_probe.retry_cooldown_s)
         total += subject_probe  # at the start of each subject (healthy probes; unhealthy ones retry)
         if index > 0:
             total += spec.inter_subject_cooldown_s
         confirm = _confirmation_estimate_s(spec, subject, per_run)
         if confirm > 0:  # cooldown + probe + conditioning for the (highest) candidate, assumed to PASS
             confirm += spec.confirmation.cooldown_s + subject_probe + spec.confirmation.warmup_s
-        total += discovery + confirm
+        total += discovery + len(spec.sweep_values(subject)) * spec.repetitions * per_run + confirm
     return total
 
 
@@ -124,10 +124,12 @@ def _confirmation_estimate_s(spec: ExperimentSpec, subject: str, per_run: float)
         gate = _slo_kwargs(spec.slo_for(subject))
     if spec.sweep.type == "rate":
         eligible = sorted(v for v in spec.sweep_values(subject) if v <= ceiling.rps + _ROUNDING_TOLERANCE)
+        if not eligible:
+            return 0.0  # The executor cannot confirm any rate above the nominal ceiling.
         k = min(c.candidates, len(eligible))
         top_rps = eligible[-1] if eligible else 0.0
     else:
-        k = min(c.candidates, len(spec.sweep.values))
+        k = min(c.candidates, len(spec.sweep_values(subject)))
         top_rps = ceiling.rps
     # alpha is split over the K candidates; they're tested highest-first,
     # and the estimate assumes the highest PASSes at its first look.
@@ -152,6 +154,8 @@ def describe_sweep(spec: ExperimentSpec) -> str:
     """e.g. "concurrency [1, 2, 4]" or "rate 0.25x-2.5x of ceiling:
     short=6.67rps(rpm)" -- a quota-relative sweep's rps differ per
     subject, so the ceiling each resolves against is shown."""
+    if spec.sweep.values_by_workload is not None:
+        return 'rate ' + ', '.join(f'{n}={spec.sweep_values(n)}' for n in spec.subject_names)
     if spec.sweep.quota_fractions is None:
         stop = f" until {spec.sweep.stop_after_fails} FAILs" if spec.sweep.stop_after_fails else ""
         return f"{spec.sweep.type} {spec.sweep.values}{stop}"
@@ -167,6 +171,17 @@ def recommendation_summary(report: ExperimentReport) -> List[str]:
     run_all's final table."""
     lines = []
     for profile_report in report.profiles:
+        if report.spec.purpose == 'characterization':
+            arms = profile_report.history_comparison
+            invalid = (profile_report.measurement_validity or {}).get('status') == 'invalid'
+            incomplete = arms is not None and (
+                len(arms) != len(report.spec.sweep_values(profile_report.workload_name)) * report.spec.repetitions *
+                (1 + len(report.spec.history_protocol.recovery_delays_s or [report.spec.history_protocol.recovery_s]))
+                or any(a.get('status') != 'observed' for a in arms))
+            status = 'incomplete or invalid' if invalid or incomplete else 'complete'
+            lines.append(f'{profile_report.workload_name}: characterization {status}; '
+                         'no admission envelope produced by diagnostic experiment')
+            continue
         rec = profile_report.recommendation
         if rec is None:
             lines.append(f"{profile_report.workload_name}: NO swept value met the configured SLO")

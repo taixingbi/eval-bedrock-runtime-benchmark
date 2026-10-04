@@ -30,7 +30,7 @@ def _load_text(text: str, model: ModelConfig = MICRO):
 
 class ShippedExperimentTests(unittest.TestCase):
     def test_every_shipped_experiment_binds_to_every_shipped_model(self):
-        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem != "diagnostic-context-history"):
+        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem not in {"diagnostic-context-history", "diagnostic-context-stress2-history"}):
             for model in load_models(include_disabled=True):
                 with self.subTest(experiment=path.name, model=model.name):
                     spec = load_experiment(str(path), model)
@@ -41,7 +41,7 @@ class ShippedExperimentTests(unittest.TestCase):
     def test_no_shipped_experiment_stops_on_a_repetition_count(self):
         """Confirmation stops on requests / time / a look -- repetitions
         are only how data is collected."""
-        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem != "diagnostic-context-history"):
+        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem not in {"diagnostic-context-history", "diagnostic-context-stress2-history"}):
             spec = load_experiment(str(path), MICRO)
             with self.subTest(path=path.name):
                 if spec.history_protocol is not None or spec.burst_protocol:
@@ -53,7 +53,7 @@ class ShippedExperimentTests(unittest.TestCase):
 
     def test_experiment_files_never_name_a_model(self):
         model_words = {m.name for m in load_models(include_disabled=True)} | {"nova", "llama", "qwen"}
-        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem != "diagnostic-context-history"):
+        for path in sorted(p for p in Path("experiments").glob("*.yaml") if p.stem not in {"diagnostic-context-history", "diagnostic-context-stress2-history"}):
             spec = load_experiment(str(path), MICRO)
             with self.subTest(path=path.name):
                 self.assertFalse(any(w in spec.name for w in model_words), spec.name)

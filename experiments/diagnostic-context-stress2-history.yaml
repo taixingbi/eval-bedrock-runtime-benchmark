@@ -1,0 +1,29 @@
+# Stage B template: generate only after Stage A confirms all three baselines.
+purpose: characterization
+name: diagnostic-context-stress2-history
+description: 'Round two Stage B: compare history at 70%, 85%, 95% of each independently
+  confirmed stress2 baseline. Descriptive recovery observations; no post-overload
+  capacity confirmation.'
+workloads: [short, medium, long]
+baseline_required: true
+warmup_s: 0
+duration_s: 900
+repetitions: 2
+stream: true
+seed: 7
+sweep:
+  type: rate
+  baseline_fractions: [0.7, 0.85, 0.95]
+history_protocol:
+  idle_s: 300
+  overload_quota_fraction: 2.0
+  overload_duration_s: 120
+  recovery_mode: fixed_wait
+  recovery_delays_s: [120, 300, 600]
+  bin_s: 30
+transport:
+  max_connections: 128
+  total_max_attempts: 1
+  connect_timeout_s: 5
+  read_timeout_s: 60
+baseline_experiment: diagnostic-context-stress2

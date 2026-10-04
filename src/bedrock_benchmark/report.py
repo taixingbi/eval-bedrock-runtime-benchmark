@@ -961,7 +961,9 @@ def build_capacity_profile(report: ExperimentReport, run_metadata: Optional[dict
             # Absolute values, or quota_fractions of each subject's
             # provider ceiling (resolved per class: sweep_values_rps).
             **({"quota_fractions": spec.sweep.quota_fractions, "relative_to": "provider_ceiling"}
-               if spec.sweep.quota_fractions is not None else {"values": list(spec.sweep.values)}),
+               if spec.sweep.quota_fractions is not None else
+               {"values_by_workload": {n: spec.sweep_values(n) for n in spec.subject_names}}
+               if spec.sweep.values_by_workload is not None else {"values": list(spec.sweep.values)}),
         },
         "workload_classes": workload_classes,
         # Only present for a `mix:` experiment -- the one valid source

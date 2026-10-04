@@ -1,5 +1,6 @@
 """Materialize the normalized history matrix from confirmed baseline artifacts."""
 from copy import deepcopy
+from dataclasses import replace
 from hashlib import sha256
 import math
 from pathlib import Path
@@ -66,12 +67,16 @@ def prepare(template_path, profile_paths, model, root=Path('.')):
         if name not in sources:
             raise ValueError(f'Missing confirmed baseline for {name}')
         profile, source, digest = sources[name]
-        spec = load_experiment(str(root / 'experiments' / f'capacity-context-{name}-rate.yaml'), model)
+        baseline_name = template.get('baseline_experiment', f'capacity-context-{name}-rate')
+        if not isinstance(baseline_name, str) or Path(baseline_name).name != baseline_name:
+            raise ValueError('baseline_experiment must be an experiment name')
+        spec = load_experiment(str(root / 'experiments' / f'{baseline_name}.yaml'), model)
+        spec = replace(spec, workloads=[w for w in spec.workloads if w.name == name])
         expected = binding(spec)
         constraints = profile.get('constraints', {})
         actual = {'model': profile.get('model'), 'quota': constraints.get('quota'),
-                  'workloads': constraints.get('workloads'),
-                  'slo': constraints.get('slo', {}).get('effective_by_workload')}
+                  'workloads': {name: constraints.get('workloads', {}).get(name)},
+                  'slo': {name: constraints.get('slo', {}).get('effective_by_workload', {}).get(name)}}
         if actual != expected:
             raise ValueError(f'{name}: baseline model, quota, workload or SLO differs from current configuration')
         if (profile.get('purpose') != 'admission_calibration' or profile.get('mode') != 'sweep'
@@ -87,7 +92,8 @@ def prepare(template_path, profile_paths, model, root=Path('.')):
             raise ValueError(f'{name}: no valid, independently confirmed rate baseline; rerun Experiment A')
         cfg = deepcopy(template)
         cfg.pop('baseline_required')
-        cfg['name'] = f'diagnostic-context-history-{name}'
+        cfg.pop('baseline_experiment', None)
+        cfg['name'] = f'{template["name"]}-{name}'
         cfg['workloads'] = [name]
         cfg['sweep'] = {'type': 'rate', 'values': [rate * f for f in fractions]}
         cfg['baseline_context'] = {

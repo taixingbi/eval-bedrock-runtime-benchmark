@@ -30,6 +30,14 @@ def build_matrix(experiment, root=Path('.')):
                 if subset.get('seed') is not None:
                     subset['seed'] += index
                 jobs.append({'label': f'{workload} / {rate} RPS', 'config': subset})
+    elif sweep.get('values_by_workload') and sweep.get('type') == 'rate' and not config.get('history_protocol') and not config.get('mix'):
+        # Keep each class's discovery, recovery and confirmation together.
+        for workload in config['workloads']:
+            subset = copy.deepcopy(config)
+            subset['workloads'] = [workload]
+            grids = subset['sweep'].pop('values_by_workload')
+            subset['sweep']['values'] = grids[workload]
+            jobs.append({'label': f'{workload} / idle capacity', 'config': subset})
     else:
         jobs.append({'label': name, 'config': config})
     if len(jobs) > 256:

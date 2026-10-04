@@ -4,7 +4,7 @@
 # Each recovery delay gets a fresh idle + overload sequence, with no probes.
 # Fixed waits are experimental conditions, not evidence of a provider reset.
 purpose: characterization
-name: diagnostic-context-stress
+name: diagnostic-context-stress1
 description: |
   Compare short, medium and long input classes at fixed output=64 and the same
   absolute offered rates, after idle and after offered overload
