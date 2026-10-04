@@ -1,0 +1,40 @@
+purpose: characterization
+name: diagnostic-context-stress
+description: 'Compare short, medium and long input classes at fixed output=64 and
+  the same
+
+  absolute offered rates, after idle and after offered overload
+
+  plus fixed recovery delays. Continuous 15-minute observations with 30s
+
+  descriptive bins; paired arrival seeds and reversed arm order on trial two.
+
+  Does not produce a safe capacity or identify an internal quota mechanism.
+
+  '
+workloads:
+- long
+warmup_s: 0
+duration_s: 900
+repetitions: 2
+stream: true
+seed: 11
+sweep:
+  type: rate
+  values:
+  - 1.6667
+history_protocol:
+  idle_s: 300
+  overload_quota_fraction: 2
+  overload_duration_s: 120
+  recovery_mode: fixed_wait
+  recovery_delays_s:
+  - 120
+  - 300
+  - 600
+  bin_s: 30
+transport:
+  max_connections: 128
+  total_max_attempts: 1
+  connect_timeout_s: 5
+  read_timeout_s: 60
