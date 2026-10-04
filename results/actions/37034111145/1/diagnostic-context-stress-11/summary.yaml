@@ -1,0 +1,11 @@
+results_dir: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results
+runs:
+- model: nova-micro
+  experiment: diagnostic-context-stress
+  path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/experiments/actions-selected.yaml
+  status: ok
+  elapsed_s: 12353.2
+  recommendations:
+  - 'long: NO swept value met the configured SLO'
+  profile_path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results/nova-micro/diagnostic-context-stress-83c13cd9-capacity-profile.yaml
+  jsonl_path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results/nova-micro/diagnostic-context-stress-83c13cd9.jsonl
