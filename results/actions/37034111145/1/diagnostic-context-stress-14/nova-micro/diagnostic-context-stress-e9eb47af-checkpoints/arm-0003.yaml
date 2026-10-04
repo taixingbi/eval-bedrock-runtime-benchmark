@@ -1,0 +1,2591 @@
+artifact_type: history_arm
+subject: long
+run:
+  owner: taixingbi
+  purpose: benchmark via GitHub Actions
+  ticket: actions-37034111145
+  environment: dev
+  workload_rotation_index: 0
+  run_id: e9eb47af
+raw_file: arm-0003.jsonl
+scenario: after_overload_recovery
+trial: 0
+target_rps: 1
+nominal_ceiling_rps: 6.666666666666667
+seed: 10
+status: observed
+bins:
+- offset_s: 0
+  metrics:
+    latency:
+      ttft_ms:
+        n: 20
+        p50: 664.905
+        p95: 884.1275
+        p99: 979.2415
+      tpot_ms:
+        n: 20
+        p50: 3.3929
+        p95: 4.26
+        p99: 4.8322
+      e2e_ms:
+        n: 20
+        p50: 884.775
+        p95: 1103.4605
+        p99: 1193.7561
+      text_decode_tpot_ms:
+        n: 20
+        p50: 3.371
+        p95: 4.2364
+        p99: 4.8117
+    throughput:
+      scheduled_rps: 0.8
+      attempted_rps: 0.8
+      successful_rps: 0.6667
+      slo_goodput_rps: 0.6667
+      input_tokens_per_s: 5402.0
+      output_tokens_per_s: 42.6667
+      total_tokens_per_s: 5444.6667
+      completed_successes: 20
+      input_usage_samples: 20
+      output_usage_samples: 20
+    reliability:
+      n: 24
+      n_success: 20
+      n_throttled: 0
+      n_non_throttle_errors: 4
+      success_rate: 0.833333
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.166667
+      timeout_rate: 0.166667
+      streaming_requests: 24
+      stream_failures_before_first_text: 4
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 6
+        average: 3.5194
+      outstanding_sdk_calls:
+        peak: 6
+        average: 3.5193
+      scheduling_lag_ms:
+        n: 24
+        p50: 1.4327
+        p95: 3.2724
+        p99: 5.1789
+  start: 1791123075.3060014
+  end: 1791123105.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 24
+  scheduled_rps: 0.8
+  attempted_rps: 0.8
+  successful_rps: 0.6667
+  throttled_rps: 0.0
+  success_rate: 0.8333
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.6667
+  ttft_p95_ms: 884.13
+  latency_p95_ms: 1103.46
+  peak_inflight: 6
+  scheduling_lag_p99_ms: 5.690813064575195
+- offset_s: 30
+  metrics:
+    latency:
+      ttft_ms:
+        n: 33
+        p50: 643.94
+        p95: 771.914
+        p99: 871.964
+      tpot_ms:
+        n: 33
+        p50: 3.4286
+        p95: 4.2702
+        p99: 6.1764
+      e2e_ms:
+        n: 33
+        p50: 863.27
+        p95: 1032.818
+        p99: 1106.2664
+      text_decode_tpot_ms:
+        n: 33
+        p50: 3.4097
+        p95: 4.2527
+        p99: 6.158
+    throughput:
+      scheduled_rps: 1.1333
+      attempted_rps: 1.1333
+      successful_rps: 1.1
+      slo_goodput_rps: 1.1
+      input_tokens_per_s: 8913.3
+      output_tokens_per_s: 70.4
+      total_tokens_per_s: 8983.7
+      completed_successes: 33
+      input_usage_samples: 33
+      output_usage_samples: 33
+    reliability:
+      n: 34
+      n_success: 33
+      n_throttled: 0
+      n_non_throttle_errors: 1
+      success_rate: 0.970588
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.029412
+      timeout_rate: 0.029412
+      streaming_requests: 34
+      stream_failures_before_first_text: 1
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 8
+        average: 5.798
+      outstanding_sdk_calls:
+        peak: 8
+        average: 5.7978
+      scheduling_lag_ms:
+        n: 34
+        p50: 1.3803
+        p95: 3.0241
+        p99: 3.5206
+  start: 1791123105.3060014
+  end: 1791123135.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 34
+  scheduled_rps: 1.1333333333333333
+  attempted_rps: 1.1333333333333333
+  successful_rps: 1.1
+  throttled_rps: 0.0
+  success_rate: 0.9706
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.1
+  ttft_p95_ms: 771.91
+  latency_p95_ms: 1032.82
+  peak_inflight: 8
+  scheduling_lag_p99_ms: 3.6573410034179688
+- offset_s: 60
+  metrics:
+    latency:
+      ttft_ms:
+        n: 41
+        p50: 646.77
+        p95: 846.5
+        p99: 883.896
+      tpot_ms:
+        n: 41
+        p50: 3.36
+        p95: 3.9141
+        p99: 5.1129
+      e2e_ms:
+        n: 41
+        p50: 865.9
+        p95: 1058.75
+        p99: 1097.092
+      text_decode_tpot_ms:
+        n: 41
+        p50: 3.337
+        p95: 3.9111
+        p99: 5.0904
+    throughput:
+      scheduled_rps: 1.3667
+      attempted_rps: 1.3667
+      successful_rps: 1.3333
+      slo_goodput_rps: 1.3333
+      input_tokens_per_s: 10804.0
+      output_tokens_per_s: 85.3333
+      total_tokens_per_s: 10889.3333
+      completed_successes: 40
+      input_usage_samples: 40
+      output_usage_samples: 40
+    reliability:
+      n: 41
+      n_success: 41
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 41
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 7
+        average: 3.3107
+      outstanding_sdk_calls:
+        peak: 7
+        average: 3.3105
+      scheduling_lag_ms:
+        n: 41
+        p50: 1.2696
+        p95: 1.8759
+        p99: 2.3247
+  start: 1791123135.3060014
+  end: 1791123165.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 41
+  scheduled_rps: 1.3666666666666667
+  attempted_rps: 1.3666666666666667
+  successful_rps: 1.3333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.3333
+  ttft_p95_ms: 846.5
+  latency_p95_ms: 1058.75
+  peak_inflight: 7
+  scheduling_lag_p99_ms: 2.332925796508789
+- offset_s: 90
+  metrics:
+    latency:
+      ttft_ms:
+        n: 29
+        p50: 644.3
+        p95: 836.952
+        p99: 999.0368
+      tpot_ms:
+        n: 29
+        p50: 3.3889
+        p95: 5.1125
+        p99: 7.295
+      e2e_ms:
+        n: 29
+        p50: 864.97
+        p95: 1080.48
+        p99: 1124.0056
+      text_decode_tpot_ms:
+        n: 29
+        p50: 3.366
+        p95: 5.0958
+        p99: 7.2757
+    throughput:
+      scheduled_rps: 0.9667
+      attempted_rps: 0.9667
+      successful_rps: 1.0
+      slo_goodput_rps: 1.0
+      input_tokens_per_s: 8103.0
+      output_tokens_per_s: 64.0
+      total_tokens_per_s: 8167.0
+      completed_successes: 30
+      input_usage_samples: 30
+      output_usage_samples: 30
+    reliability:
+      n: 29
+      n_success: 29
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 29
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 6
+        average: 1.0404
+      outstanding_sdk_calls:
+        peak: 6
+        average: 1.0403
+      scheduling_lag_ms:
+        n: 29
+        p50: 1.3371
+        p95: 3.1934
+        p99: 4.8676
+  start: 1791123165.3060014
+  end: 1791123195.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 29
+  scheduled_rps: 0.9666666666666667
+  attempted_rps: 0.9666666666666667
+  successful_rps: 1.0
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0
+  ttft_p95_ms: 836.95
+  latency_p95_ms: 1080.48
+  peak_inflight: 6
+  scheduling_lag_p99_ms: 5.335092544555664
+- offset_s: 120
+  metrics:
+    latency:
+      ttft_ms:
+        n: 22
+        p50: 641.26
+        p95: 710.2245
+        p99: 733.3944
+      tpot_ms:
+        n: 22
+        p50: 3.538
+        p95: 5.4123
+        p99: 7.3009
+      e2e_ms:
+        n: 22
+        p50: 867.78
+        p95: 1008.577
+        p99: 1111.4933
+      text_decode_tpot_ms:
+        n: 22
+        p50: 3.514
+        p95: 5.3883
+        p99: 7.2796
+    throughput:
+      scheduled_rps: 0.7333
+      attempted_rps: 0.7333
+      successful_rps: 0.7333
+      slo_goodput_rps: 0.7333
+      input_tokens_per_s: 5942.2
+      output_tokens_per_s: 46.9333
+      total_tokens_per_s: 5989.1333
+      completed_successes: 22
+      input_usage_samples: 22
+      output_usage_samples: 22
+    reliability:
+      n: 22
+      n_success: 22
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 22
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 0.6537
+      outstanding_sdk_calls:
+        peak: 5
+        average: 0.6536
+      scheduling_lag_ms:
+        n: 22
+        p50: 1.3176
+        p95: 3.5193
+        p99: 3.6075
+  start: 1791123195.3060014
+  end: 1791123225.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 22
+  scheduled_rps: 0.7333333333333333
+  attempted_rps: 0.7333333333333333
+  successful_rps: 0.7333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.7333
+  ttft_p95_ms: 710.22
+  latency_p95_ms: 1008.58
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 3.622293472290039
+- offset_s: 150
+  metrics:
+    latency:
+      ttft_ms:
+        n: 30
+        p50: 632.715
+        p95: 711.413
+        p99: 735.8004
+      tpot_ms:
+        n: 30
+        p50: 3.4274
+        p95: 7.0008
+        p99: 9.7292
+      e2e_ms:
+        n: 30
+        p50: 847.88
+        p95: 1078.9355
+        p99: 1317.0331
+      text_decode_tpot_ms:
+        n: 30
+        p50: 3.406
+        p95: 6.9747
+        p99: 9.7082
+    throughput:
+      scheduled_rps: 1.0
+      attempted_rps: 1.0
+      successful_rps: 0.9333
+      slo_goodput_rps: 0.9333
+      input_tokens_per_s: 7562.8
+      output_tokens_per_s: 59.7333
+      total_tokens_per_s: 7622.5333
+      completed_successes: 28
+      input_usage_samples: 28
+      output_usage_samples: 28
+    reliability:
+      n: 30
+      n_success: 30
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 30
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 0.833
+      outstanding_sdk_calls:
+        peak: 5
+        average: 0.8329
+      scheduling_lag_ms:
+        n: 30
+        p50: 1.3945
+        p95: 2.425
+        p99: 6.224
+  start: 1791123225.3060014
+  end: 1791123255.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 30
+  scheduled_rps: 1.0
+  attempted_rps: 1.0
+  successful_rps: 0.9333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.9333
+  ttft_p95_ms: 711.41
+  latency_p95_ms: 1078.94
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 7.751941680908203
+- offset_s: 180
+  metrics:
+    latency:
+      ttft_ms:
+        n: 28
+        p50: 648.385
+        p95: 763.3965
+        p99: 784.213
+      tpot_ms:
+        n: 28
+        p50: 3.5081
+        p95: 4.9796
+        p99: 5.4739
+      e2e_ms:
+        n: 28
+        p50: 864.6
+        p95: 1008.3205
+        p99: 1018.0341
+      text_decode_tpot_ms:
+        n: 28
+        p50: 3.4798
+        p95: 4.953
+        p99: 5.4497
+    throughput:
+      scheduled_rps: 0.9333
+      attempted_rps: 0.9333
+      successful_rps: 1.0
+      slo_goodput_rps: 1.0
+      input_tokens_per_s: 8103.0
+      output_tokens_per_s: 64.0
+      total_tokens_per_s: 8167.0
+      completed_successes: 30
+      input_usage_samples: 30
+      output_usage_samples: 30
+    reliability:
+      n: 28
+      n_success: 28
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 28
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.8405
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.8404
+      scheduling_lag_ms:
+        n: 28
+        p50: 1.4213
+        p95: 2.5553
+        p99: 4.0433
+  start: 1791123255.3060014
+  end: 1791123285.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 28
+  scheduled_rps: 0.9333333333333333
+  attempted_rps: 0.9333333333333333
+  successful_rps: 1.0
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0
+  ttft_p95_ms: 763.4
+  latency_p95_ms: 1008.32
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 4.488468170166016
+- offset_s: 210
+  metrics:
+    latency:
+      ttft_ms:
+        n: 25
+        p50: 638.71
+        p95: 703.53
+        p99: 780.8848
+      tpot_ms:
+        n: 25
+        p50: 3.3563
+        p95: 4.8027
+        p99: 5.3867
+      e2e_ms:
+        n: 25
+        p50: 852.5
+        p95: 962.764
+        p99: 1000.3204
+      text_decode_tpot_ms:
+        n: 25
+        p50: 3.3325
+        p95: 4.7747
+        p99: 5.3649
+    throughput:
+      scheduled_rps: 0.8333
+      attempted_rps: 0.8333
+      successful_rps: 0.7667
+      slo_goodput_rps: 0.7667
+      input_tokens_per_s: 6212.3
+      output_tokens_per_s: 49.0667
+      total_tokens_per_s: 6261.3667
+      completed_successes: 23
+      input_usage_samples: 23
+      output_usage_samples: 23
+    reliability:
+      n: 25
+      n_success: 25
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 25
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.6968
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.6967
+      scheduling_lag_ms:
+        n: 25
+        p50: 1.3762
+        p95: 3.3576
+        p99: 3.8229
+  start: 1791123285.3060014
+  end: 1791123315.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 25
+  scheduled_rps: 0.8333333333333334
+  attempted_rps: 0.8333333333333334
+  successful_rps: 0.7667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.7667
+  ttft_p95_ms: 703.53
+  latency_p95_ms: 962.76
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 3.9529800415039062
+- offset_s: 240
+  metrics:
+    latency:
+      ttft_ms:
+        n: 21
+        p50: 650.07
+        p95: 957.86
+        p99: 1009.836
+      tpot_ms:
+        n: 21
+        p50: 3.4544
+        p95: 4.4014
+        p99: 4.4435
+      e2e_ms:
+        n: 21
+        p50: 866.94
+        p95: 1156.91
+        p99: 1186.758
+      text_decode_tpot_ms:
+        n: 21
+        p50: 3.4359
+        p95: 4.3987
+        p99: 4.4243
+    throughput:
+      scheduled_rps: 0.7
+      attempted_rps: 0.7
+      successful_rps: 0.7333
+      slo_goodput_rps: 0.7333
+      input_tokens_per_s: 5942.2
+      output_tokens_per_s: 46.9333
+      total_tokens_per_s: 5989.1333
+      completed_successes: 22
+      input_usage_samples: 22
+      output_usage_samples: 22
+    reliability:
+      n: 21
+      n_success: 21
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 21
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.6181
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.618
+      scheduling_lag_ms:
+        n: 21
+        p50: 1.2763
+        p95: 2.831
+        p99: 7.5038
+  start: 1791123315.3060014
+  end: 1791123345.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 21
+  scheduled_rps: 0.7
+  attempted_rps: 0.7
+  successful_rps: 0.7333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.7333
+  ttft_p95_ms: 957.86
+  latency_p95_ms: 1156.91
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 8.671998977661133
+- offset_s: 270
+  metrics:
+    latency:
+      ttft_ms:
+        n: 34
+        p50: 638.605
+        p95: 690.0325
+        p99: 737.2297
+      tpot_ms:
+        n: 34
+        p50: 3.376
+        p95: 4.0886
+        p99: 7.4656
+      e2e_ms:
+        n: 34
+        p50: 853.105
+        p95: 927.092
+        p99: 1150.0016
+      text_decode_tpot_ms:
+        n: 34
+        p50: 3.356
+        p95: 4.0619
+        p99: 7.4455
+    throughput:
+      scheduled_rps: 1.1333
+      attempted_rps: 1.1333
+      successful_rps: 1.1667
+      slo_goodput_rps: 1.1667
+      input_tokens_per_s: 9453.5
+      output_tokens_per_s: 74.6667
+      total_tokens_per_s: 9528.1667
+      completed_successes: 35
+      input_usage_samples: 35
+      output_usage_samples: 35
+    reliability:
+      n: 34
+      n_success: 34
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 34
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.9879
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.9877
+      scheduling_lag_ms:
+        n: 34
+        p50: 1.2487
+        p95: 2.97
+        p99: 4.0477
+  start: 1791123345.3060014
+  end: 1791123375.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 34
+  scheduled_rps: 1.1333333333333333
+  attempted_rps: 1.1333333333333333
+  successful_rps: 1.1667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.1667
+  ttft_p95_ms: 690.03
+  latency_p95_ms: 927.09
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 4.500389099121094
+- offset_s: 300
+  metrics:
+    latency:
+      ttft_ms:
+        n: 34
+        p50: 645.305
+        p95: 814.405
+        p99: 888.5978
+      tpot_ms:
+        n: 34
+        p50: 3.47
+        p95: 3.9166
+        p99: 7.8483
+      e2e_ms:
+        n: 34
+        p50: 872.895
+        p95: 1088.9135
+        p99: 1214.704
+      text_decode_tpot_ms:
+        n: 34
+        p50: 3.4483
+        p95: 3.8938
+        p99: 7.8248
+    throughput:
+      scheduled_rps: 1.1333
+      attempted_rps: 1.1333
+      successful_rps: 1.0333
+      slo_goodput_rps: 1.0333
+      input_tokens_per_s: 8373.1
+      output_tokens_per_s: 66.1333
+      total_tokens_per_s: 8439.2333
+      completed_successes: 31
+      input_usage_samples: 31
+      output_usage_samples: 31
+    reliability:
+      n: 34
+      n_success: 34
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 34
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.963
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.9629
+      scheduling_lag_ms:
+        n: 34
+        p50: 1.3918
+        p95: 2.9682
+        p99: 3.3614
+  start: 1791123375.3060014
+  end: 1791123405.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 34
+  scheduled_rps: 1.1333333333333333
+  attempted_rps: 1.1333333333333333
+  successful_rps: 1.0333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0333
+  ttft_p95_ms: 814.4
+  latency_p95_ms: 1088.91
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 3.5398006439208984
+- offset_s: 330
+  metrics:
+    latency:
+      ttft_ms:
+        n: 29
+        p50: 647.09
+        p95: 695.6
+        p99: 700.3088
+      tpot_ms:
+        n: 29
+        p50: 3.4213
+        p95: 5.3574
+        p99: 9.1517
+      e2e_ms:
+        n: 29
+        p50: 865.28
+        p95: 989.362
+        p99: 1259.2004
+      text_decode_tpot_ms:
+        n: 29
+        p50: 3.4027
+        p95: 5.3343
+        p99: 9.1303
+    throughput:
+      scheduled_rps: 0.9667
+      attempted_rps: 0.9667
+      successful_rps: 1.0667
+      slo_goodput_rps: 1.0667
+      input_tokens_per_s: 8643.2
+      output_tokens_per_s: 68.2667
+      total_tokens_per_s: 8711.4667
+      completed_successes: 32
+      input_usage_samples: 32
+      output_usage_samples: 32
+    reliability:
+      n: 29
+      n_success: 29
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 29
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 0.8866
+      outstanding_sdk_calls:
+        peak: 5
+        average: 0.8865
+      scheduling_lag_ms:
+        n: 29
+        p50: 1.2045
+        p95: 3.0614
+        p99: 3.8173
+  start: 1791123405.3060014
+  end: 1791123435.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 29
+  scheduled_rps: 0.9666666666666667
+  attempted_rps: 0.9666666666666667
+  successful_rps: 1.0667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0667
+  ttft_p95_ms: 695.6
+  latency_p95_ms: 989.36
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 3.960847854614258
+- offset_s: 360
+  metrics:
+    latency:
+      ttft_ms:
+        n: 42
+        p50: 655.61
+        p95: 855.869
+        p99: 1084.3487
+      tpot_ms:
+        n: 42
+        p50: 3.4037
+        p95: 4.1113
+        p99: 8.6913
+      e2e_ms:
+        n: 42
+        p50: 866.62
+        p95: 1103.876
+        p99: 1389.8309
+      text_decode_tpot_ms:
+        n: 42
+        p50: 3.3883
+        p95: 4.0836
+        p99: 8.6675
+    throughput:
+      scheduled_rps: 1.4
+      attempted_rps: 1.4
+      successful_rps: 1.3333
+      slo_goodput_rps: 1.3333
+      input_tokens_per_s: 10804.0
+      output_tokens_per_s: 85.3333
+      total_tokens_per_s: 10889.3333
+      completed_successes: 40
+      input_usage_samples: 40
+      output_usage_samples: 40
+    reliability:
+      n: 42
+      n_success: 42
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 42
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 1.2217
+      outstanding_sdk_calls:
+        peak: 4
+        average: 1.2215
+      scheduling_lag_ms:
+        n: 42
+        p50: 1.0835
+        p95: 2.3052
+        p99: 3.5083
+  start: 1791123435.3060014
+  end: 1791123465.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 42
+  scheduled_rps: 1.4
+  attempted_rps: 1.4
+  successful_rps: 1.3333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.3333
+  ttft_p95_ms: 855.87
+  latency_p95_ms: 1103.88
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 3.667593002319336
+- offset_s: 390
+  metrics:
+    latency:
+      ttft_ms:
+        n: 33
+        p50: 642.2
+        p95: 708.396
+        p99: 735.0296
+      tpot_ms:
+        n: 33
+        p50: 3.369
+        p95: 4.1856
+        p99: 4.996
+      e2e_ms:
+        n: 33
+        p50: 856.93
+        p95: 924.05
+        p99: 945.622
+      text_decode_tpot_ms:
+        n: 33
+        p50: 3.3249
+        p95: 4.1661
+        p99: 4.9202
+    throughput:
+      scheduled_rps: 1.1
+      attempted_rps: 1.1
+      successful_rps: 1.1667
+      slo_goodput_rps: 1.1667
+      input_tokens_per_s: 9453.5
+      output_tokens_per_s: 74.6667
+      total_tokens_per_s: 9528.1667
+      completed_successes: 35
+      input_usage_samples: 35
+      output_usage_samples: 35
+    reliability:
+      n: 33
+      n_success: 33
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 33
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.9675
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.9673
+      scheduling_lag_ms:
+        n: 33
+        p50: 1.3912
+        p95: 2.6981
+        p99: 2.9392
+  start: 1791123465.3060014
+  end: 1791123495.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 33
+  scheduled_rps: 1.1
+  attempted_rps: 1.1
+  successful_rps: 1.1667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.1667
+  ttft_p95_ms: 708.4
+  latency_p95_ms: 924.05
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 2.983570098876953
+- offset_s: 420
+  metrics:
+    latency:
+      ttft_ms:
+        n: 22
+        p50: 668.655
+        p95: 769.894
+        p99: 874.0556
+      tpot_ms:
+        n: 22
+        p50: 3.3352
+        p95: 3.5398
+        p99: 3.6421
+      e2e_ms:
+        n: 22
+        p50: 868.875
+        p95: 955.655
+        p99: 975.7349
+      text_decode_tpot_ms:
+        n: 22
+        p50: 3.3076
+        p95: 3.5271
+        p99: 3.6269
+    throughput:
+      scheduled_rps: 0.7333
+      attempted_rps: 0.7333
+      successful_rps: 0.6333
+      slo_goodput_rps: 0.6333
+      input_tokens_per_s: 5131.9
+      output_tokens_per_s: 40.5333
+      total_tokens_per_s: 5172.4333
+      completed_successes: 19
+      input_usage_samples: 19
+      output_usage_samples: 19
+    reliability:
+      n: 22
+      n_success: 22
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 22
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.6158
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.6157
+      scheduling_lag_ms:
+        n: 22
+        p50: 1.4431
+        p95: 3.2781
+        p99: 3.6967
+  start: 1791123495.3060014
+  end: 1791123525.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 22
+  scheduled_rps: 0.7333333333333333
+  attempted_rps: 0.7333333333333333
+  successful_rps: 0.6333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.6333
+  ttft_p95_ms: 769.89
+  latency_p95_ms: 955.65
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 3.8061141967773438
+- offset_s: 450
+  metrics:
+    latency:
+      ttft_ms:
+        n: 25
+        p50: 647.68
+        p95: 690.54
+        p99: 699.7176
+      tpot_ms:
+        n: 25
+        p50: 3.3624
+        p95: 4.0426
+        p99: 4.1866
+      e2e_ms:
+        n: 25
+        p50: 858.34
+        p95: 931.862
+        p99: 945.4368
+      text_decode_tpot_ms:
+        n: 25
+        p50: 3.3544
+        p95: 4.0223
+        p99: 4.1672
+    throughput:
+      scheduled_rps: 0.8333
+      attempted_rps: 0.8333
+      successful_rps: 0.8667
+      slo_goodput_rps: 0.8667
+      input_tokens_per_s: 7022.6
+      output_tokens_per_s: 55.4667
+      total_tokens_per_s: 7078.0667
+      completed_successes: 26
+      input_usage_samples: 26
+      output_usage_samples: 26
+    reliability:
+      n: 25
+      n_success: 25
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 25
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.6928
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.6927
+      scheduling_lag_ms:
+        n: 25
+        p50: 1.2846
+        p95: 3.6603
+        p99: 4.2141
+  start: 1791123525.3060014
+  end: 1791123555.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 25
+  scheduled_rps: 0.8333333333333334
+  attempted_rps: 0.8333333333333334
+  successful_rps: 0.8667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.8667
+  ttft_p95_ms: 690.54
+  latency_p95_ms: 931.86
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 4.341602325439453
+- offset_s: 480
+  metrics:
+    latency:
+      ttft_ms:
+        n: 37
+        p50: 655.5
+        p95: 695.164
+        p99: 703.6632
+      tpot_ms:
+        n: 37
+        p50: 3.369
+        p95: 4.0859
+        p99: 4.4502
+      e2e_ms:
+        n: 37
+        p50: 862.23
+        p95: 922.752
+        p99: 956.248
+      text_decode_tpot_ms:
+        n: 37
+        p50: 3.3502
+        p95: 4.0695
+        p99: 4.4299
+    throughput:
+      scheduled_rps: 1.2333
+      attempted_rps: 1.2333
+      successful_rps: 1.2667
+      slo_goodput_rps: 1.2667
+      input_tokens_per_s: 10263.8
+      output_tokens_per_s: 81.0667
+      total_tokens_per_s: 10344.8667
+      completed_successes: 38
+      input_usage_samples: 38
+      output_usage_samples: 38
+    reliability:
+      n: 37
+      n_success: 37
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 37
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 1.0682
+      outstanding_sdk_calls:
+        peak: 5
+        average: 1.068
+      scheduling_lag_ms:
+        n: 37
+        p50: 1.3309
+        p95: 2.2131
+        p99: 2.7358
+  start: 1791123555.3060014
+  end: 1791123585.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 37
+  scheduled_rps: 1.2333333333333334
+  attempted_rps: 1.2333333333333334
+  successful_rps: 1.2667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.2667
+  ttft_p95_ms: 695.16
+  latency_p95_ms: 922.75
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 2.9175281524658203
+- offset_s: 510
+  metrics:
+    latency:
+      ttft_ms:
+        n: 29
+        p50: 643.46
+        p95: 726.62
+        p99: 757.3216
+      tpot_ms:
+        n: 29
+        p50: 3.3835
+        p95: 4.3421
+        p99: 5.9145
+      e2e_ms:
+        n: 29
+        p50: 860.08
+        p95: 967.854
+        p99: 1084.6812
+      text_decode_tpot_ms:
+        n: 29
+        p50: 3.3602
+        p95: 4.3194
+        p99: 5.8926
+    throughput:
+      scheduled_rps: 0.9667
+      attempted_rps: 0.9667
+      successful_rps: 0.9333
+      slo_goodput_rps: 0.9333
+      input_tokens_per_s: 7562.8
+      output_tokens_per_s: 59.7333
+      total_tokens_per_s: 7622.5333
+      completed_successes: 28
+      input_usage_samples: 28
+      output_usage_samples: 28
+    reliability:
+      n: 29
+      n_success: 29
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 29
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.821
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.8209
+      scheduling_lag_ms:
+        n: 29
+        p50: 1.2028
+        p95: 3.4204
+        p99: 5.1286
+  start: 1791123585.3060014
+  end: 1791123615.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 29
+  scheduled_rps: 0.9666666666666667
+  attempted_rps: 0.9666666666666667
+  successful_rps: 0.9333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.9333
+  ttft_p95_ms: 726.62
+  latency_p95_ms: 967.85
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 5.699396133422852
+- offset_s: 540
+  metrics:
+    latency:
+      ttft_ms:
+        n: 35
+        p50: 645.23
+        p95: 698.087
+        p99: 713.7934
+      tpot_ms:
+        n: 35
+        p50: 3.3652
+        p95: 4.0599
+        p99: 4.6367
+      e2e_ms:
+        n: 35
+        p50: 854.53
+        p95: 902.624
+        p99: 918.6892
+      text_decode_tpot_ms:
+        n: 35
+        p50: 3.3425
+        p95: 4.0282
+        p99: 4.5946
+    throughput:
+      scheduled_rps: 1.1667
+      attempted_rps: 1.1667
+      successful_rps: 1.2
+      slo_goodput_rps: 1.2
+      input_tokens_per_s: 9723.6
+      output_tokens_per_s: 76.8
+      total_tokens_per_s: 9800.4
+      completed_successes: 36
+      input_usage_samples: 36
+      output_usage_samples: 36
+    reliability:
+      n: 35
+      n_success: 35
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 35
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 1.0153
+      outstanding_sdk_calls:
+        peak: 4
+        average: 1.0151
+      scheduling_lag_ms:
+        n: 35
+        p50: 1.087
+        p95: 2.6652
+        p99: 4.2053
+  start: 1791123615.3060014
+  end: 1791123645.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 35
+  scheduled_rps: 1.1666666666666667
+  attempted_rps: 1.1666666666666667
+  successful_rps: 1.2
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.2
+  ttft_p95_ms: 698.09
+  latency_p95_ms: 902.62
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 4.622459411621094
+- offset_s: 570
+  metrics:
+    latency:
+      ttft_ms:
+        n: 27
+        p50: 651.23
+        p95: 680.743
+        p99: 728.8248
+      tpot_ms:
+        n: 27
+        p50: 3.3638
+        p95: 3.4789
+        p99: 4.4681
+      e2e_ms:
+        n: 27
+        p50: 860.6
+        p95: 892.084
+        p99: 931.1676
+      text_decode_tpot_ms:
+        n: 27
+        p50: 3.3437
+        p95: 3.4485
+        p99: 4.4444
+    throughput:
+      scheduled_rps: 0.9
+      attempted_rps: 0.9
+      successful_rps: 0.9333
+      slo_goodput_rps: 0.9333
+      input_tokens_per_s: 7562.8
+      output_tokens_per_s: 59.7333
+      total_tokens_per_s: 7622.5333
+      completed_successes: 28
+      input_usage_samples: 28
+      output_usage_samples: 28
+    reliability:
+      n: 27
+      n_success: 27
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 27
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.7664
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.7663
+      scheduling_lag_ms:
+        n: 27
+        p50: 1.2755
+        p95: 2.6299
+        p99: 3.8893
+  start: 1791123645.3060014
+  end: 1791123675.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 27
+  scheduled_rps: 0.9
+  attempted_rps: 0.9
+  successful_rps: 0.9333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.9333
+  ttft_p95_ms: 680.74
+  latency_p95_ms: 892.08
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 4.323720932006836
+- offset_s: 600
+  metrics:
+    latency:
+      ttft_ms:
+        n: 26
+        p50: 648.495
+        p95: 683.92
+        p99: 699.3425
+      tpot_ms:
+        n: 26
+        p50: 3.346
+        p95: 4.2151
+        p99: 4.6917
+      e2e_ms:
+        n: 26
+        p50: 859.155
+        p95: 910.1525
+        p99: 943.53
+      text_decode_tpot_ms:
+        n: 26
+        p50: 3.3228
+        p95: 4.1917
+        p99: 4.6733
+    throughput:
+      scheduled_rps: 0.8667
+      attempted_rps: 0.8667
+      successful_rps: 0.8333
+      slo_goodput_rps: 0.8333
+      input_tokens_per_s: 6752.5
+      output_tokens_per_s: 53.3333
+      total_tokens_per_s: 6805.8333
+      completed_successes: 25
+      input_usage_samples: 25
+      output_usage_samples: 25
+    reliability:
+      n: 26
+      n_success: 26
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 26
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.7126
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.7125
+      scheduling_lag_ms:
+        n: 26
+        p50: 1.4827
+        p95: 3.6102
+        p99: 4.6554
+  start: 1791123675.3060014
+  end: 1791123705.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 26
+  scheduled_rps: 0.8666666666666667
+  attempted_rps: 0.8666666666666667
+  successful_rps: 0.8333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.8333
+  ttft_p95_ms: 683.92
+  latency_p95_ms: 910.15
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 4.876136779785156
+- offset_s: 630
+  metrics:
+    latency:
+      ttft_ms:
+        n: 28
+        p50: 646.875
+        p95: 698.25
+        p99: 786.8606
+      tpot_ms:
+        n: 28
+        p50: 3.3743
+        p95: 4.2622
+        p99: 4.4638
+      e2e_ms:
+        n: 28
+        p50: 865.45
+        p95: 936.0425
+        p99: 1005.959
+      text_decode_tpot_ms:
+        n: 28
+        p50: 3.347
+        p95: 4.2359
+        p99: 4.4541
+    throughput:
+      scheduled_rps: 0.9333
+      attempted_rps: 0.9333
+      successful_rps: 0.8667
+      slo_goodput_rps: 0.8667
+      input_tokens_per_s: 7022.6
+      output_tokens_per_s: 55.4667
+      total_tokens_per_s: 7078.0667
+      completed_successes: 26
+      input_usage_samples: 26
+      output_usage_samples: 26
+    reliability:
+      n: 28
+      n_success: 28
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 28
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.7866
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.7865
+      scheduling_lag_ms:
+        n: 28
+        p50: 1.3942
+        p95: 2.6764
+        p99: 3.0777
+  start: 1791123705.3060014
+  end: 1791123735.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 28
+  scheduled_rps: 0.9333333333333333
+  attempted_rps: 0.9333333333333333
+  successful_rps: 0.8667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.8667
+  ttft_p95_ms: 698.25
+  latency_p95_ms: 936.04
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 3.197908401489258
+- offset_s: 660
+  metrics:
+    latency:
+      ttft_ms:
+        n: 29
+        p50: 664.67
+        p95: 826.916
+        p99: 1123.1008
+      tpot_ms:
+        n: 29
+        p50: 3.3587
+        p95: 4.1577
+        p99: 5.6066
+      e2e_ms:
+        n: 29
+        p50: 869.04
+        p95: 1099.99
+        p99: 1224.7348
+      text_decode_tpot_ms:
+        n: 29
+        p50: 3.3371
+        p95: 4.1353
+        p99: 5.5847
+    throughput:
+      scheduled_rps: 0.9667
+      attempted_rps: 0.9667
+      successful_rps: 1.0667
+      slo_goodput_rps: 1.0667
+      input_tokens_per_s: 8643.2
+      output_tokens_per_s: 68.2667
+      total_tokens_per_s: 8711.4667
+      completed_successes: 32
+      input_usage_samples: 32
+      output_usage_samples: 32
+    reliability:
+      n: 29
+      n_success: 29
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 29
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.9101
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.9099
+      scheduling_lag_ms:
+        n: 29
+        p50: 1.3974
+        p95: 2.4239
+        p99: 2.5775
+  start: 1791123735.3060014
+  end: 1791123765.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 29
+  scheduled_rps: 0.9666666666666667
+  attempted_rps: 0.9666666666666667
+  successful_rps: 1.0667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0667
+  ttft_p95_ms: 826.92
+  latency_p95_ms: 1099.99
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 2.6082992553710938
+- offset_s: 690
+  metrics:
+    latency:
+      ttft_ms:
+        n: 34
+        p50: 642.445
+        p95: 729.0925
+        p99: 857.9161
+      tpot_ms:
+        n: 34
+        p50: 3.3624
+        p95: 3.9627
+        p99: 4.242
+      e2e_ms:
+        n: 34
+        p50: 856.775
+        p95: 937.3865
+        p99: 1055.7214
+      text_decode_tpot_ms:
+        n: 34
+        p50: 3.3406
+        p95: 3.9367
+        p99: 4.2159
+    throughput:
+      scheduled_rps: 1.1333
+      attempted_rps: 1.1333
+      successful_rps: 1.0667
+      slo_goodput_rps: 1.0667
+      input_tokens_per_s: 8643.2
+      output_tokens_per_s: 68.2667
+      total_tokens_per_s: 8711.4667
+      completed_successes: 32
+      input_usage_samples: 32
+      output_usage_samples: 32
+    reliability:
+      n: 34
+      n_success: 34
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 34
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.9304
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.9302
+      scheduling_lag_ms:
+        n: 34
+        p50: 1.4684
+        p95: 3.0521
+        p99: 4.4543
+  start: 1791123765.3060014
+  end: 1791123795.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 34
+  scheduled_rps: 1.1333333333333333
+  attempted_rps: 1.1333333333333333
+  successful_rps: 1.0667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0667
+  ttft_p95_ms: 729.09
+  latency_p95_ms: 937.39
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 4.946231842041016
+- offset_s: 720
+  metrics:
+    latency:
+      ttft_ms:
+        n: 28
+        p50: 668.54
+        p95: 705.568
+        p99: 708.4081
+      tpot_ms:
+        n: 28
+        p50: 3.344
+        p95: 3.9765
+        p99: 4.9787
+      e2e_ms:
+        n: 28
+        p50: 878.385
+        p95: 927.7345
+        p99: 961.9426
+      text_decode_tpot_ms:
+        n: 28
+        p50: 3.3169
+        p95: 3.9535
+        p99: 4.9431
+    throughput:
+      scheduled_rps: 0.9333
+      attempted_rps: 0.9333
+      successful_rps: 0.9667
+      slo_goodput_rps: 0.9667
+      input_tokens_per_s: 7832.9
+      output_tokens_per_s: 61.8667
+      total_tokens_per_s: 7894.7667
+      completed_successes: 29
+      input_usage_samples: 29
+      output_usage_samples: 29
+    reliability:
+      n: 28
+      n_success: 28
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 28
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.8686
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.8685
+      scheduling_lag_ms:
+        n: 28
+        p50: 1.2978
+        p95: 3.1138
+        p99: 3.3867
+  start: 1791123795.3060014
+  end: 1791123825.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 28
+  scheduled_rps: 0.9333333333333333
+  attempted_rps: 0.9333333333333333
+  successful_rps: 0.9667
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.9667
+  ttft_p95_ms: 705.57
+  latency_p95_ms: 927.73
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 3.473043441772461
+- offset_s: 750
+  metrics:
+    latency:
+      ttft_ms:
+        n: 34
+        p50: 652.295
+        p95: 699.114
+        p99: 959.3054
+      tpot_ms:
+        n: 34
+        p50: 3.407
+        p95: 4.1898
+        p99: 5.2119
+      e2e_ms:
+        n: 34
+        p50: 864.63
+        p95: 964.1935
+        p99: 1195.9421
+      text_decode_tpot_ms:
+        n: 34
+        p50: 3.3876
+        p95: 4.175
+        p99: 5.1881
+    throughput:
+      scheduled_rps: 1.1333
+      attempted_rps: 1.1333
+      successful_rps: 1.1333
+      slo_goodput_rps: 1.1333
+      input_tokens_per_s: 9183.4
+      output_tokens_per_s: 72.5333
+      total_tokens_per_s: 9255.9333
+      completed_successes: 34
+      input_usage_samples: 34
+      output_usage_samples: 34
+    reliability:
+      n: 34
+      n_success: 34
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 34
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 4
+        average: 0.979
+      outstanding_sdk_calls:
+        peak: 4
+        average: 0.9788
+      scheduling_lag_ms:
+        n: 34
+        p50: 1.3336
+        p95: 2.3489
+        p99: 2.6209
+  start: 1791123825.3060014
+  end: 1791123855.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 34
+  scheduled_rps: 1.1333333333333333
+  attempted_rps: 1.1333333333333333
+  successful_rps: 1.1333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.1333
+  ttft_p95_ms: 699.11
+  latency_p95_ms: 964.19
+  peak_inflight: 4
+  scheduling_lag_p99_ms: 2.7437210083007812
+- offset_s: 780
+  metrics:
+    latency:
+      ttft_ms:
+        n: 27
+        p50: 650.74
+        p95: 777.524
+        p99: 931.0064
+      tpot_ms:
+        n: 27
+        p50: 3.3792
+        p95: 5.736
+        p99: 7.0601
+      e2e_ms:
+        n: 27
+        p50: 879.8
+        p95: 1126.121
+        p99: 1177.152
+      text_decode_tpot_ms:
+        n: 27
+        p50: 3.357
+        p95: 5.7126
+        p99: 7.0378
+    throughput:
+      scheduled_rps: 0.9
+      attempted_rps: 0.9
+      successful_rps: 0.9
+      slo_goodput_rps: 0.9
+      input_tokens_per_s: 7292.7
+      output_tokens_per_s: 57.6
+      total_tokens_per_s: 7350.3
+      completed_successes: 27
+      input_usage_samples: 27
+      output_usage_samples: 27
+    reliability:
+      n: 27
+      n_success: 27
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 27
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 3
+        average: 0.8114
+      outstanding_sdk_calls:
+        peak: 3
+        average: 0.8112
+      scheduling_lag_ms:
+        n: 27
+        p50: 1.2665
+        p95: 3.2918
+        p99: 3.7155
+  start: 1791123855.3060014
+  end: 1791123885.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 27
+  scheduled_rps: 0.9
+  attempted_rps: 0.9
+  successful_rps: 0.9
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 0.9
+  ttft_p95_ms: 777.52
+  latency_p95_ms: 1126.12
+  peak_inflight: 3
+  scheduling_lag_p99_ms: 3.8595199584960938
+- offset_s: 810
+  metrics:
+    latency:
+      ttft_ms:
+        n: 36
+        p50: 655.61
+        p95: 779.1125
+        p99: 992.795
+      tpot_ms:
+        n: 36
+        p50: 3.3696
+        p95: 5.6558
+        p99: 5.8268
+      e2e_ms:
+        n: 36
+        p50: 869.725
+        p95: 1032.4675
+        p99: 1204.0715
+      text_decode_tpot_ms:
+        n: 36
+        p50: 3.3474
+        p95: 5.5913
+        p99: 5.8157
+    throughput:
+      scheduled_rps: 1.2333
+      attempted_rps: 1.2333
+      successful_rps: 1.2333
+      slo_goodput_rps: 1.2333
+      input_tokens_per_s: 9993.7
+      output_tokens_per_s: 78.9333
+      total_tokens_per_s: 10072.6333
+      completed_successes: 37
+      input_usage_samples: 37
+      output_usage_samples: 37
+    reliability:
+      n: 37
+      n_success: 36
+      n_throttled: 0
+      n_non_throttle_errors: 1
+      success_rate: 0.972973
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.027027
+      timeout_rate: 0.027027
+      streaming_requests: 37
+      stream_failures_before_first_text: 1
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 1.5126
+      outstanding_sdk_calls:
+        peak: 5
+        average: 1.5125
+      scheduling_lag_ms:
+        n: 37
+        p50: 1.157
+        p95: 2.7756
+        p99: 3.0097
+  start: 1791123885.3060014
+  end: 1791123915.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 37
+  scheduled_rps: 1.2333333333333334
+  attempted_rps: 1.2333333333333334
+  successful_rps: 1.2333
+  throttled_rps: 0.0
+  success_rate: 0.973
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.2333
+  ttft_p95_ms: 779.11
+  latency_p95_ms: 1032.47
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 3.0448436737060547
+- offset_s: 840
+  metrics:
+    latency:
+      ttft_ms:
+        n: 32
+        p50: 636.25
+        p95: 724.463
+        p99: 878.3983
+      tpot_ms:
+        n: 32
+        p50: 3.4127
+        p95: 4.5877
+        p99: 5.5436
+      e2e_ms:
+        n: 32
+        p50: 846.84
+        p95: 973.8375
+        p99: 1013.0862
+      text_decode_tpot_ms:
+        n: 32
+        p50: 3.389
+        p95: 4.5638
+        p99: 5.5329
+    throughput:
+      scheduled_rps: 1.0667
+      attempted_rps: 1.0667
+      successful_rps: 1.0
+      slo_goodput_rps: 1.0
+      input_tokens_per_s: 8103.0
+      output_tokens_per_s: 64.0
+      total_tokens_per_s: 8167.0
+      completed_successes: 30
+      input_usage_samples: 30
+      output_usage_samples: 30
+    reliability:
+      n: 32
+      n_success: 32
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 32
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 5
+        average: 1.9062
+      outstanding_sdk_calls:
+        peak: 5
+        average: 1.906
+      scheduling_lag_ms:
+        n: 32
+        p50: 1.5423
+        p95: 3.3722
+        p99: 3.8642
+  start: 1791123915.3060014
+  end: 1791123945.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 32
+  scheduled_rps: 1.0666666666666667
+  attempted_rps: 1.0666666666666667
+  successful_rps: 1.0
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0
+  ttft_p95_ms: 724.46
+  latency_p95_ms: 973.84
+  peak_inflight: 5
+  scheduling_lag_p99_ms: 4.036188125610352
+- offset_s: 870
+  metrics:
+    latency:
+      ttft_ms:
+        n: 33
+        p50: 659.56
+        p95: 899.916
+        p99: 1268.4944
+      tpot_ms:
+        n: 33
+        p50: 3.3752
+        p95: 5.5782
+        p99: 6.8736
+      e2e_ms:
+        n: 33
+        p50: 878.08
+        p95: 1210.732
+        p99: 1541.7948
+      text_decode_tpot_ms:
+        n: 33
+        p50: 3.367
+        p95: 5.5527
+        p99: 6.8501
+    throughput:
+      scheduled_rps: 1.1
+      attempted_rps: 1.1
+      successful_rps: 1.1333
+      slo_goodput_rps: 1.1333
+      input_tokens_per_s: 9183.4
+      output_tokens_per_s: 72.5333
+      total_tokens_per_s: 9255.9333
+      completed_successes: 34
+      input_usage_samples: 34
+      output_usage_samples: 34
+    reliability:
+      n: 33
+      n_success: 33
+      n_throttled: 0
+      n_non_throttle_errors: 0
+      success_rate: 1.0
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.0
+      timeout_rate: 0.0
+      streaming_requests: 33
+      stream_failures_before_first_text: 0
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 6
+        average: 1.5971
+      outstanding_sdk_calls:
+        peak: 6
+        average: 1.5969
+      scheduling_lag_ms:
+        n: 33
+        p50: 1.1206
+        p95: 2.7182
+        p99: 4.1391
+  start: 1791123945.3060014
+  end: 1791123975.3060014
+  duration_s: 30.0
+  offered_rps: 1
+  n: 33
+  scheduled_rps: 1.1
+  attempted_rps: 1.1
+  successful_rps: 1.1333
+  throttled_rps: 0.0
+  success_rate: 1.0
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.1333
+  ttft_p95_ms: 899.92
+  latency_p95_ms: 1210.73
+  peak_inflight: 6
+  scheduling_lag_p99_ms: 4.641056060791016
+recovery_mode: fixed_wait
+requested_recovery_s: 300
+overload:
+  metrics:
+    latency:
+      ttft_ms:
+        n: 1196
+        p50: 642.035
+        p95: 773.855
+        p99: 972.4695
+      tpot_ms:
+        n: 1196
+        p50: 3.3721
+        p95: 4.1727
+        p99: 6.3856
+      e2e_ms:
+        n: 1196
+        p50: 858.385
+        p95: 1012.745
+        p99: 1194.92
+      text_decode_tpot_ms:
+        n: 1196
+        p50: 3.3497
+        p95: 4.1372
+        p99: 6.3677
+    throughput:
+      scheduled_rps: 13.3833
+      attempted_rps: 13.3833
+      successful_rps: 9.925
+      slo_goodput_rps: 9.925
+      input_tokens_per_s: 80422.275
+      output_tokens_per_s: 635.2
+      total_tokens_per_s: 81057.475
+      completed_successes: 1191
+      input_usage_samples: 1191
+      output_usage_samples: 1191
+    reliability:
+      n: 1606
+      n_success: 1196
+      n_throttled: 402
+      n_non_throttle_errors: 8
+      success_rate: 0.744707
+      throttle_rate: 0.250311
+      non_throttle_error_rate: 0.004981
+      timeout_rate: 0.004981
+      streaming_requests: 1606
+      stream_failures_before_first_text: 410
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 13.333333333333334
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 31
+        average: 13.1537
+      outstanding_sdk_calls:
+        peak: 31
+        average: 13.1521
+      scheduling_lag_ms:
+        n: 1606
+        p50: 0.845
+        p95: 1.8723
+        p99: 2.2045
+  start: 1791122654.48689
+  end: 1791122774.48689
+  duration_s: 120.0
+  offered_rps: 13.333333333333334
+  n: 1606
+  scheduled_rps: 13.383333333333333
+  attempted_rps: 13.383333333333333
+  successful_rps: 9.925
+  throttled_rps: 3.35
+  success_rate: 0.7447
+  throttle_rate: 0.2503
+  n_throttled: 402
+  slo_goodput_rps: 9.925
+  ttft_p95_ms: 773.86
+  latency_p95_ms: 1012.75
+  peak_inflight: 31
+  scheduling_lag_p99_ms: 2.20489501953125
+  throttling_observed: true
+overload_drained_at: 1791122775.2174878
+seconds_since_overload_end: 300.8191113471985
+seconds_since_overload_drain: 300.0885136127472
+aggregate:
+  metrics:
+    latency:
+      ttft_ms:
+        n: 903
+        p50: 648.05
+        p95: 771.591
+        p99: 957.4948
+      tpot_ms:
+        n: 903
+        p50: 3.3808
+        p95: 4.4487
+        p99: 7.2231
+      e2e_ms:
+        n: 903
+        p50: 864.75
+        p95: 1028.201
+        p99: 1256.292
+      text_decode_tpot_ms:
+        n: 903
+        p50: 3.357
+        p95: 4.4274
+        p99: 7.1986
+    throughput:
+      scheduled_rps: 1.01
+      attempted_rps: 1.01
+      successful_rps: 1.0022
+      slo_goodput_rps: 1.0022
+      input_tokens_per_s: 8121.0067
+      output_tokens_per_s: 64.1422
+      total_tokens_per_s: 8185.1489
+      completed_successes: 902
+      input_usage_samples: 902
+      output_usage_samples: 902
+    reliability:
+      n: 909
+      n_success: 903
+      n_throttled: 0
+      n_non_throttle_errors: 6
+      success_rate: 0.993399
+      throttle_rate: 0.0
+      non_throttle_error_rate: 0.006601
+      timeout_rate: 0.006601
+      streaming_requests: 909
+      stream_failures_before_first_text: 6
+      stream_failures_after_first_text: 0
+      stream_failures_stage_unknown: 0
+      stream_mode_unknown: 0
+    load_state:
+      configured_concurrency: null
+      configured_offered_rps: 1
+      max_inflight: null
+      outstanding_including_executor_queue:
+        peak: 8
+        average: 1.2777
+      outstanding_sdk_calls:
+        peak: 8
+        average: 1.2776
+      scheduling_lag_ms:
+        n: 909
+        p50: 1.3254
+        p95: 3.0679
+        p99: 4.4994
+  start: 1791123075.3060014
+  end: 1791123975.3060014
+  duration_s: 900.0
+  offered_rps: 1
+  n: 909
+  scheduled_rps: 1.01
+  attempted_rps: 1.01
+  successful_rps: 1.0022
+  throttled_rps: 0.0
+  success_rate: 0.9934
+  throttle_rate: 0.0
+  n_throttled: 0
+  slo_goodput_rps: 1.0022
+  ttft_p95_ms: 771.59
+  latency_p95_ms: 1028.2
+  peak_inflight: 8
+  scheduling_lag_p99_ms: 4.500389099121094
+recovery_summary:
+  first_throttle_offset_s: null
+  initial_window_s: 120.0
+  tail_start_offset_s: 600.0
+  initial_successful_rps: 1.025
+  tail_successful_rps: 1.02
+  throttle_rate: 0.0
+  interpretation: descriptive; does not establish SLO compliance or provider reset

@@ -1,0 +1,118 @@
+schema_version: 1
+artifact_type: history_checkpoints
+experiment: diagnostic-context-stress
+run:
+  owner: taixingbi
+  purpose: benchmark via GitHub Actions
+  ticket: actions-37034111145
+  environment: dev
+  workload_rotation_index: 0
+  run_id: e9eb47af
+target:
+  model_id: us.amazon.nova-micro-v1:0
+  region: us-east-1
+status: complete
+planned_arms: 8
+saved_arms: 8
+observed_arms: 8
+protocol:
+  idle_s: 300
+  overload_quota_fraction: 2
+  overload_duration_s: 120
+  recovery_s: 120.0
+  recovery_delays_s:
+  - 120
+  - 300
+  - 600
+  recovery_mode: fixed_wait
+  bin_s: 30
+duration_s: 900
+repetitions: 2
+seed: 10
+stream: true
+configured_workloads:
+- name: long
+  input_tokens: 8192
+  output_tokens: 64
+  slo_profile: silver
+  latency_p95_ms: 8000
+  role: characterization
+  filler_chars: null
+workloads:
+  long:
+    rates_rps:
+    - 1
+    slo:
+      ttft_p95_ms: 3000
+      tpot_p95_ms: 70
+      latency_p95_ms: 8000
+      success_rate_min: 0.99
+      throttle_rate_max: 0.005
+      confidence: 0.95
+interpretation: descriptive; does not establish SLO compliance or provider reset
+arms:
+- subject: long
+  scenario: after_idle
+  trial: 0
+  target_rps: 1
+  requested_recovery_s: null
+  status: observed
+  summary_file: arm-0001.yaml
+  raw_file: arm-0001.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 0
+  target_rps: 1
+  requested_recovery_s: 120
+  status: observed
+  summary_file: arm-0002.yaml
+  raw_file: arm-0002.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 0
+  target_rps: 1
+  requested_recovery_s: 300
+  status: observed
+  summary_file: arm-0003.yaml
+  raw_file: arm-0003.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 0
+  target_rps: 1
+  requested_recovery_s: 600
+  status: observed
+  summary_file: arm-0004.yaml
+  raw_file: arm-0004.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 1
+  target_rps: 1
+  requested_recovery_s: 600
+  status: observed
+  summary_file: arm-0005.yaml
+  raw_file: arm-0005.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 1
+  target_rps: 1
+  requested_recovery_s: 300
+  status: observed
+  summary_file: arm-0006.yaml
+  raw_file: arm-0006.jsonl
+- subject: long
+  scenario: after_overload_recovery
+  trial: 1
+  target_rps: 1
+  requested_recovery_s: 120
+  status: observed
+  summary_file: arm-0007.yaml
+  raw_file: arm-0007.jsonl
+- subject: long
+  scenario: after_idle
+  trial: 1
+  target_rps: 1
+  requested_recovery_s: null
+  status: observed
+  summary_file: arm-0008.yaml
+  raw_file: arm-0008.jsonl
+updated_at: '2026-10-04T16:41:22.012983+00:00'
