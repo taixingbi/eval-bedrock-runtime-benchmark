@@ -394,9 +394,12 @@ sweep and confirmation together:
 
 | Class | Offered rates (RPS) |
 | --- | --- |
-| short, 512/64 | 2, 3, 4, 5, 6 |
-| medium, 2048/64 | 2, 3, 4, 5 |
-| long, 8192/64 | 2, 2.5, 3, 4 |
+| short, 512/64 | 2, 3, 4, 5, 6, 6.25, 6.5, 6.67 |
+| medium, 2048/64 | 2, 3, 4, 5, 5.5, 6, 6.5, 6.67 |
+| long, 8192/64 | 2, 2.5, 3, 4, 4.5, 5, 5.5, 6, 6.5, 6.67 |
+
+At a 400 RPM quota, 6.67 RPS slightly exceeds the 6.6667 RPS nominal ceiling.
+It is a discovery point; the current confirmation filter excludes it.
 
 These grids suit the current nova-micro/nova-lite/qwen quota ranges. With the
 current nova-pro and llama quotas, all proposed rates exceed the nominal rate

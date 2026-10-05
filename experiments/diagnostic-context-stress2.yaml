@@ -11,9 +11,9 @@ stream: true
 sweep:
   type: rate
   values_by_workload:
-    short: [2, 3, 4, 5, 6]
-    medium: [2, 3, 4, 5]
-    long: [2, 2.5, 3, 4]
+    short:  [2, 3, 4, 5, 6, 6.25, 6.5, 6.67]
+    medium: [2, 3, 4, 5, 5.5, 6, 6.5, 6.67]
+    long:   [2, 2.5, 3, 4, 4.5, 5, 5.5, 6, 6.5, 6.67]
   stop_after_clear_fail: true
 confirmation:
   max_looks: 2
