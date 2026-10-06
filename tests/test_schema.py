@@ -229,3 +229,35 @@ class ValidationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_context_confirmation_values_survive_workload_filtering():
+    path = "experiments/diagnostic-context-stress2.yaml"
+    full = load_experiment(path, MICRO)
+    for workload in full.workloads:
+        filtered = load_experiment(path, MICRO, only_slo_profiles={workload.slo_profile})
+        assert workload.name in {w.name for w in filtered.workloads}
+        assert filtered.confirmation.values_by_workload == full.confirmation.values_by_workload
+        assert filtered.confirmation.order == "ascending"
+        assert filtered.recovery_probe.required_consecutive_healthy == 2
+
+
+def test_confirmation_values_reject_unknown_workload_before_filtering():
+    text = MINIMAL.replace("confirmation: {max_looks: 2}",
+        "confirmation: {max_looks: 2, values_by_workload: {typo: [1]}}")
+    with unittest.TestCase().assertRaisesRegex(ValueError, "invalid values_by_workload"):
+        _load_text(text)
+
+
+def test_actions_context_jobs_load_with_confirmation_grids(tmp_path):
+    import runpy
+    import yaml
+    build_matrix = runpy.run_path("scripts/actions_matrix.py")["build_matrix"]
+    jobs = build_matrix("diagnostic-context-stress2")["include"]
+    assert len(jobs) == 3
+    for job in jobs:
+        config = job["config"]
+        path = tmp_path / "selected.yaml"
+        path.write_text(yaml.safe_dump(config))
+        spec = load_experiment(str(path), MICRO)
+        assert set(spec.confirmation.values_by_workload) == {spec.workloads[0].name}

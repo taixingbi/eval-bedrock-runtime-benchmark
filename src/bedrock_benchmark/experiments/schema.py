@@ -464,6 +464,10 @@ def load_experiment(
     sweep = raw["sweep"]
     transport = raw.get("transport") or {}
     workloads = _resolve_workloads(raw.get("workloads"), path, workloads_file)
+    confirmation_values = (raw.get("confirmation") or {}).get("values_by_workload")
+    if confirmation_values is not None:
+        if not isinstance(confirmation_values, dict) or set(confirmation_values) - {w.name for w in workloads}:
+            raise ValueError("confirmation: invalid values_by_workload")
     roles = raw.get("workload_roles") or {}
     if not isinstance(roles, dict) or set(roles) - {w.name for w in workloads}:
         raise ValueError(f"{path}: workload_roles must map selected workload names to reference_control")
@@ -735,7 +739,7 @@ def _validate(spec: ExperimentSpec) -> None:
             raise ValueError("confirmation: invalid order or stop_after_fail")
         if c.values_by_workload is not None:
             for workload, values in c.values_by_workload.items():
-                if workload not in {w.name for w in spec.workloads} or not values or any(
+                if not isinstance(values, list) or not values or any(
                         not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0 for v in values):
                     raise ValueError("confirmation: invalid values_by_workload")
                 if values != sorted(set(values)):

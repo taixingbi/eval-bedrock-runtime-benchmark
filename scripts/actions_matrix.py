@@ -37,6 +37,10 @@ def build_matrix(experiment, root=Path('.')):
             subset['workloads'] = [workload]
             grids = subset['sweep'].pop('values_by_workload')
             subset['sweep']['values'] = grids[workload]
+            confirmation = subset.get('confirmation') or {}
+            if confirmation.get('values_by_workload') is not None:
+                confirmation['values_by_workload'] = {
+                    workload: confirmation['values_by_workload'][workload]}
             jobs.append({'label': f'{workload} / idle capacity', 'config': subset})
     else:
         jobs.append({'label': name, 'config': config})
