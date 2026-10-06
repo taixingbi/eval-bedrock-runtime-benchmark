@@ -1,0 +1,69 @@
+purpose: admission_calibration
+name: diagnostic-context-stress2
+description: 'Round two: discover and independently confirm idle baseline capacity
+  for each input class before normalized history. A passing highest grid point is
+  a lower bound, not a located capacity knee.'
+workloads:
+- long
+warmup_s: 0
+duration_s: 900
+stream: true
+sweep:
+  type: rate
+  stop_after_clear_fail: true
+  values:
+  - 2
+  - 2.5
+  - 3
+  - 4
+  - 4.5
+  - 5
+  - 5.5
+  - 6
+  - 6.5
+  - 6.67
+confirmation:
+  order: ascending
+  stop_after_fail: true
+  values_by_workload:
+    short:
+    - 6.25
+    - 6.5
+    - 6.67
+    medium:
+    - 5.5
+    - 6
+    - 6.5
+    long:
+    - 5.5
+    - 6
+    - 6.5
+  max_looks: 2
+  max_requests: auto
+  max_duration_s: auto
+  candidates: 3
+  cooldown_s: 300
+  warmup_s: 0
+  min_steady_state_duration_s: 900
+  continuous: true
+isolation:
+  inter_subject_cooldown_s: 300
+  recovery_probe:
+    duration_s: 20
+    concurrency: 1
+    max_throttle_rate: 0
+    min_success_rate: 0.99
+    max_ttft_ratio: 2
+    max_attempts: 8
+    retry_cooldown_s: 180
+    required_consecutive_healthy: 2
+    baseline_fraction: 0.25
+    baseline_duration_s: 120
+    baseline_min_requests: 100
+    baseline_goodput_ratio: 0.9
+transport:
+  max_connections: 128
+  total_max_attempts: 1
+  connect_timeout_s: 5
+  read_timeout_s: 60
+seed: 7
