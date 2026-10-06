@@ -36,7 +36,9 @@ def test_stress2_preserves_per_class_sweeps_and_confirmation_in_actions(tmp_path
         path = tmp_path / f'{name}.yaml'
         path.write_text(yaml.safe_dump(cfg))
         bound = load_experiment(str(path), MODEL)
-        assert bound.confirmation == spec.confirmation
+        assert bound.confirmation == replace(
+            spec.confirmation, values_by_workload={
+                name: spec.confirmation.values_by_workload[name]})
         assert bound.recovery_probe == spec.recovery_probe
         durations.append(estimated_duration_s(bound))
         assert durations[-1] < 270 * 60
