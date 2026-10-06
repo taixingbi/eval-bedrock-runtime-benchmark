@@ -294,3 +294,29 @@ def test_each_candidate_requires_its_own_healthy_baseline(monkeypatch, recover_n
     if recover_next:
         assert second.n == 1000  # discovery and recovery data are excluded
         assert artifact['operating_conditions']['provider_state']['status'] == 'healthy_observed'
+
+
+def test_ascending_confirmation_stops_on_non_pass(monkeypatch):
+    calls = scripted(monkeypatch, [(2000, 0)] * 3 + [(2000, 0), (0, 2000)])
+    report = run(_spec(repetitions=1, duration_s=90, warmup_s=0,
+        sweep=SweepConfig(type='rate', values=[5, 6, 7]),
+        confirmation=ConfirmationConfig(order='ascending', stop_after_fail=True,
+            values_by_workload={'short': [5, 6, 7]}, continuous=True,
+            max_requests='auto', max_duration_s='auto'),
+        slo=replace(_spec().slo, throttle_rate_max=.01, success_rate_min=.99)))
+    results = report.profiles[0].confirmations
+    assert [(r.value, r.verdict) for r in results] == [(5, 'PASS'), (6, 'FAIL'), (7, 'INCONCLUSIVE')]
+    assert results[-1].stop_reason == 'not_tested'
+    assert report.profiles[0].confirmation_plan.to_dict()['order'] == 'ascending'
+    assert report.profiles[0].recommendation.confirmed_point.rps == 5
+    assert len(calls) == 5
+
+
+def test_recovery_requires_consecutive_healthy_probes(monkeypatch):
+    calls = scripted(monkeypatch, [(100, 0), (0, 100), (100, 0), (100, 0), (100, 0)])
+    report = run(_spec(repetitions=1, sweep=SweepConfig(type='rate', values=[1]),
+        recovery_probe=RecoveryProbe(max_attempts=4, retry_cooldown_s=0,
+                                    required_consecutive_healthy=2)))
+    assert len(calls) == 5
+    assert len(report.profiles[0].points) == 1
+    assert len(report.profiles[0].measurement_validity['recovery_probes']) == 4

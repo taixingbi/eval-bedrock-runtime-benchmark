@@ -85,6 +85,7 @@ class RecoveryProbe:
     min_success_rate: float = 0.9
     max_ttft_ratio: float = 2.0
     max_attempts: int = 5
+    required_consecutive_healthy: int = 1
     retry_cooldown_s: float = 120.0
     baseline_fraction: Optional[float] = None
     baseline_duration_s: float = 120.0
@@ -174,9 +175,13 @@ class ConfirmationConfig:
     # by construction just because a fixed window is too short for it.
     max_duration_s: Union[float, str] = 1800.0
     # How many of the highest non-failing discovery points to confirm:
-    # tested highest-first, stopping at the first PASS, with alpha split
+    # Default: highest-first, stopping at the first PASS, with alpha split
     # over them (analysis/confirmation.py).
     candidates: int = 1
+    # Ascending continues after PASS; fail-stop also stops on INCONCLUSIVE.
+    order: str = "highest_first"
+    stop_after_fail: bool = False
+    values_by_workload: Optional[Dict[str, List[float]]] = None
     # Idle seconds before EACH tested candidate, so every candidate starts
     # from the same procedure -- cooldown -> conditioning -> measurement --
     # and none inherits the overload of what ran before it (discovery's
@@ -552,7 +557,7 @@ def _recovery_probe(raw: dict, path: str) -> Optional[RecoveryProbe]:
             or not math.isfinite(probe.baseline_duration_s) or probe.baseline_duration_s <= 0
             or probe.baseline_min_requests < 1 or not 0 < probe.baseline_goodput_ratio <= 1):
         raise ValueError(f"{path}: invalid baseline recovery policy")
-    if (probe.duration_s <= 0 or probe.concurrency < 1 or probe.max_attempts < 1 or probe.retry_cooldown_s < 0
+    if (probe.duration_s <= 0 or probe.concurrency < 1 or probe.max_attempts < 1 or not 1 <= probe.required_consecutive_healthy <= probe.max_attempts or probe.retry_cooldown_s < 0
             or not 0 <= probe.max_throttle_rate <= 1 or not 0 <= probe.min_success_rate <= 1
             or probe.max_ttft_ratio <= 1):
         raise ValueError(f"{path}: isolation.recovery_probe: duration_s > 0, concurrency / max_attempts >= 1, "
@@ -725,6 +730,16 @@ def _validate(spec: ExperimentSpec) -> None:
         return (value != AUTO if isinstance(value, str) else
                 not isinstance(value, (int, float)) or not math.isfinite(value) or value < low)
 
+    if c is not None:
+        if c.order not in ("highest_first", "ascending") or type(c.stop_after_fail) is not bool:
+            raise ValueError("confirmation: invalid order or stop_after_fail")
+        if c.values_by_workload is not None:
+            for workload, values in c.values_by_workload.items():
+                if workload not in {w.name for w in spec.workloads} or not values or any(
+                        not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0 for v in values):
+                    raise ValueError("confirmation: invalid values_by_workload")
+                if values != sorted(set(values)):
+                    raise ValueError("confirmation values must be unique and ascending")
     if c is not None and (c.max_looks < 1 or (c.max_repetitions is not None and c.max_repetitions < 1)
                           or bad_cap(c.max_requests, 1) or bad_cap(c.max_duration_s, 1e-9)
                           or c.candidates < 1 or c.cooldown_s < 0 or c.warmup_s < 0

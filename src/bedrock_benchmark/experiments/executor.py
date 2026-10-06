@@ -423,11 +423,16 @@ async def _run(spec: ExperimentSpec, target: BedrockConverseTarget, on_progress:
                 await asyncio.sleep(cooldown_s)
             if rp is None:
                 return True
+            consecutive_healthy = 0
             for attempt in range(1, rp.max_attempts + 1):
                 if attempt > 1 and rp.retry_cooldown_s > 0:
                     await asyncio.sleep(rp.retry_cooldown_s)
                 if await probe(reason, attempt) and await capacity_probe(reason, attempt):
-                    return True
+                    consecutive_healthy += 1
+                    if consecutive_healthy >= rp.required_consecutive_healthy:
+                        return True
+                else:
+                    consecutive_healthy = 0
             validity["status"] = "invalid"
             validity["events"].append({"reason": reason, "outcome": "provider_unrecovered",
                                        "probes": rp.max_attempts})
@@ -626,12 +631,18 @@ async def _run(spec: ExperimentSpec, target: BedrockConverseTarget, on_progress:
             # Candidates come from discovery ALONE, before any confirmation
             # data -- so alpha can be split over exactly these K.
             candidates = _candidates(points, recommendation, spec, subject.name, cfg.candidates)
+            if cfg.values_by_workload is not None:
+                requested = cfg.values_by_workload.get(subject.name, [])
+                candidates = sorted([p for p in points if _value(p) in requested
+                                     and recommendation.analysis.stable_pass_max is not None
+                                     and _value(p) <= recommendation.analysis.stable_pass_max], key=_value)
             plan = plan_looks(
                 limits_for(gate_kwargs, class_gate, shares), confidence=gate_kwargs["confidence"],
                 max_looks=cfg.max_looks, max_repetitions=cfg.max_repetitions,
                 max_requests=cfg.max_requests, max_duration_s=cfg.max_duration_s,
                 candidates=len(candidates), min_steady_state_duration_s=cfg.min_steady_state_duration_s,
             )
+            plan.order = cfg.order
             gate_look = {**gate_kwargs, "confidence": plan.per_test_confidence}
             class_look = None if class_gate is None else {
                 n: {**kw, "confidence": plan.per_test_confidence} for n, kw in class_gate.items()
@@ -640,7 +651,7 @@ async def _run(spec: ExperimentSpec, target: BedrockConverseTarget, on_progress:
             per_rep_s = spec.warmup_s + confirmation_duration
             started = time.perf_counter()
             stopped = False
-            for disc in reversed(candidates):  # highest first; stop at the first PASS
+            for disc in (candidates if cfg.order == "ascending" else reversed(candidates)):
                 value = _value(disc)
                 if stopped:
                     confirmations.append(ConfirmationResult(value, INCONCLUSIVE, "not_tested"))
@@ -825,7 +836,9 @@ async def _run(spec: ExperimentSpec, target: BedrockConverseTarget, on_progress:
                         )
                 result.provider_state = candidate_state
                 confirmations.append(result)
-                stopped = result.verdict == PASS or result.stop_reason == "provider_state_invalid"
+                stopped = (result.stop_reason == "provider_state_invalid"
+                           or (cfg.order == "highest_first" and result.verdict == PASS)
+                           or (cfg.stop_after_fail and result.verdict != PASS))
             confirmed = highest_confirmed(confirmations)
             recommendation.confirmed_point = confirmed.point if confirmed is not None else None
             recommendation.confirmation_source = "confirmation"

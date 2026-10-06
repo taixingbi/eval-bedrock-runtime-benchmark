@@ -115,6 +115,7 @@ class ConfirmationPlan:
     look_requirements: List[Dict[str, int]] = field(default_factory=list)
     # K: the candidates alpha is split over (tested highest-first).
     candidates: int = 1
+    order: str = "highest_first"
     min_steady_state_duration_s: float = 0.0
 
     def look_sizes(self, j: int) -> Dict[str, int]:
@@ -130,7 +131,7 @@ class ConfirmationPlan:
     def to_dict(self) -> dict:
         out = {
             "confidence": self.confidence, "max_looks": self.max_looks,
-            "candidates": self.candidates, "order": "highest_first",
+            "candidates": self.candidates, "order": self.order,
             "min_steady_state_duration_s": self.min_steady_state_duration_s,
             # 1 - (1 - confidence) / (max_looks x candidates), Bonferroni
             "per_test_confidence": round(self.per_test_confidence, 6),
