@@ -1,0 +1,12 @@
+results_dir: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results
+runs:
+- model: nova-micro
+  experiment: diagnostic-context-stress2
+  path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/experiments/actions-selected.yaml
+  status: ok
+  elapsed_s: 9376.9
+  recommendations:
+  - 'short: measured observed_nonfailing=6.67 [PASS] statistically_confirmed=None saturation=None | no calibration point (nothing
+    statistically confirmed)'
+  profile_path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results/nova-micro/diagnostic-context-stress2-65cb0c2f-capacity-profile.yaml
+  jsonl_path: /home/runner/work/eval-bedrock-runtime-benchmark/eval-bedrock-runtime-benchmark/results/nova-micro/diagnostic-context-stress2-65cb0c2f.jsonl
